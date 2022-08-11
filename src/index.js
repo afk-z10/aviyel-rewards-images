@@ -13,6 +13,7 @@ const rewardsImage = async (request, response) => {
   const size = {
     height: 120,
     width: 560,
+    zoom: 2,
   };
 
   if (request.method !== "POST") {
@@ -29,8 +30,8 @@ const rewardsImage = async (request, response) => {
     const htmlString = getRewardsHTML(requestBody.data, size);
 
     const image = await getScreenshot(htmlString, {
-      height: size.height * 2,
-      width: size.width * 2,
+      height: size.height * size.zoom,
+      width: size.width * size.zoom,
     });
 
     response.status(200).setHeader("Content-Type", "image/png").end(image);
@@ -45,7 +46,7 @@ const rewardsImage = async (request, response) => {
 
 /**
  * @param {Array<{image:string;name:string}>} rewards
- * @param {{width: number;height: number}} size
+ * @param {{width:number;height:number;zoom:number}} size
  */
 function getRewardsHTML(rewards, size) {
   return html`<link
@@ -64,7 +65,7 @@ function getRewardsHTML(rewards, size) {
         width: ${size.width}px;
         display: flex;
         align-items: center;
-        zoom: 2;
+        zoom: ${size.zoom};
       }
     </style>
     <body>
