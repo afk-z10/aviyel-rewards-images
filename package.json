@@ -1,0 +1,20 @@
+{
+  "name": "@aviyel/rewards-images",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "start": "functions-framework --target=rewardsImage"
+  },
+  "main": "src/index.js",
+  "dependencies": {
+    "chrome-aws-lambda": "^10.1.0",
+    "puppeteer-core": "^10.1.0",
+    "zod": "^3.17.10"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "^3.1.2"
+  }
+}
